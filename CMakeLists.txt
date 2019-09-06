@@ -24,7 +24,7 @@ find_package(catkin
 find_package(PCL 1.8 REQUIRED)
 find_package(OpenCV REQUIRED)
 
-find_package(VTK 6.2.0 EXACT REQUIRED)
+find_package(VTK 6.2.0 REQUIRED)
 
 # Fix a compilation bug under ubuntu 16.04 (Xenial)
 list(REMOVE_ITEM PCL_LIBRARIES "vtkproj4")
