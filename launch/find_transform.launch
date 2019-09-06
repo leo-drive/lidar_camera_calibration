@@ -5,11 +5,11 @@
 
   <!-- ArUco mapping -->
   <node pkg="aruco_mapping" type="aruco_mapping" name="aruco_mapping" output="screen">
-    <remap from="/image_raw" to="/camera/image_raw"/>
+    <remap from="/image_raw" to="/port_0/camera_1/image_raw"/>
 
-    <param name="calibration_file" type="string" value="/home/mert/projects/mfc_ws/src/aruco_mapping/data/idef.ini" /> 
+    <param name="calibration_file" type="string" value="/home/mfc/projects/calibration_ws/src/aruco_mapping/data/sekonix_left.ini" />
     <param name="num_of_markers" type="int" value="2" />
-    <param name="marker_size" type="double" value="0.16"/>
+    <param name="marker_size" type="double" value="0.20"/>
     <param name="space_type" type="string" value="plane" />
     <param name="roi_allowed" type="bool" value="false" />
 
@@ -17,7 +17,7 @@
   </node>  
 
 
-  <rosparam command="load" file="/home/mert/projects/mfc_ws/src/lidar_camera_calibration/conf/lidar_camera_calibration.yaml" />
+  <rosparam command="load" file="/home/mfc/projects/calibration_ws/src/lidar_camera_calibration/conf/lidar_camera_calibration.yaml" />
   <node pkg="lidar_camera_calibration" type="find_transform" name="find_transform" output="screen">
   </node>
 </launch>
