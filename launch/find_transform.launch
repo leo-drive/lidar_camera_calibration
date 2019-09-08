@@ -5,9 +5,9 @@
 
   <!-- ArUco mapping -->
   <node pkg="aruco_mapping" type="aruco_mapping" name="aruco_mapping" output="screen">
-    <remap from="/image_raw" to="/port_0/camera_1/image_raw"/>
+    <remap from="/image_raw" to="/port_0/camera_1/image_rect_color"/>
 
-    <param name="calibration_file" type="string" value="/home/mfc/projects/calibration_ws/src/aruco_mapping/data/sekonix_left.ini" />
+    <param name="calibration_file" type="string" value="/home/mert/projects/calib_ws/src/aruco_mapping/data/sekonix_left_2.ini" />
     <param name="num_of_markers" type="int" value="2" />
     <param name="marker_size" type="double" value="0.20"/>
     <param name="space_type" type="string" value="plane" />
@@ -17,8 +17,15 @@
   </node>  
 
 
-  <rosparam command="load" file="/home/mfc/projects/calibration_ws/src/lidar_camera_calibration/conf/lidar_camera_calibration.yaml" />
+  <rosparam command="load" file="/home/mert/projects/calib_ws/src/lidar_camera_calibration/conf/lidar_camera_calibration.yaml" />
   <node pkg="lidar_camera_calibration" type="find_transform" name="find_transform" output="screen">
   </node>
+  <node pkg="image_transport" type="republish" name="rect_republisher" output="screen" 
+  args="compressed in:=/port_0/camera_1/image_rect_color raw out:=/port_0/camera_1/image_rect_color">
+  </node>  
+  <node pkg="image_transport" type="republish" name="raw_republisher" output="screen" 
+  args="compressed in:=/port_0/camera_1/image_raw raw out:=/port_0/camera_1/image_raw">
+    </node>  
+
 </launch>
 
